@@ -33,18 +33,18 @@ class MCPClient:
         return self._session
 
     async def list_tools(self) -> types.ListToolsResult | list[None]:
-        # TODO: Return a list of tools defined by the MCP server
-        return []
-
+        result = await self.session().list_tools()
+        return result
+    
     async def call_tool(
         self, tool_name: str, tool_input: dict
     ) -> types.CallToolResult | None:
-        # TODO: Call a particular tool and return the result
-        return None
+        return await self.session().call_tool(tool_name, tool_input)
 
     async def list_prompts(self) -> list[types.Prompt]:
         # TODO: Return a list of prompts defined by the MCP server
-        return []
+        result = await self.session().list_prompts()
+        return result.prompts
 
     async def get_prompt(self, prompt_name, args: dict[str, str]):
         # TODO: Get a particular prompt defined by the MCP server
